@@ -15,7 +15,7 @@ const UserModels = require('../models/userModels');
 // function จัดกานให้แต่ละคำตัวอักสอนทางหน้าจะเป็นโตใหย่
 const Helpers = require('../Helpers/helpers');
 //
-const dbConfig = require('../config/secreat');
+const dbConfig = require('../config/secret');
 
 module.exports = {
     async CreateUser(req, res) {

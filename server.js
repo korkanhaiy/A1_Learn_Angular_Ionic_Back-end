@@ -5,7 +5,7 @@ const cors = require("cors");
 // const logger = require('morgan');
 
 const app = express();
-const dbConfig = require("./config/secreat");
+const dbConfig = require("./config/secret");
 const server = require('http').createServer(app);
 const io = require('socket.io').listen(server);
 
@@ -24,7 +24,7 @@ app.use((req, res, next) => {
 
 app.use(
     express.json({
-        limit: "60mb"
+        limit: "50mb"
     })
 );
 app.use(
@@ -51,6 +51,8 @@ const postRoutes = require("./routes/postRoutes");
 
 app.use("/api/chatapp", authRoutes);
 app.use("/api/chatapp", postRoutes);
+
+
 server.listen(3000, () => {
-    console.log("Running on port 3000");
+    console.log("Listening on port 3000");
 });

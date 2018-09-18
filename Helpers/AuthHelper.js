@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const HttpStatus = require('http-status-codes');
-const dbConfig = require('../config/secreat');
+const dbConfig = require('../config/secret');
 
 module.exports = {
     VerifyToken: (req, res, next) => {

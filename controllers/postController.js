@@ -26,6 +26,21 @@ module.exports = {
             created: new Date()
         };
 
+        // Post.create(body)
+        //     .then(post => {
+        //         res.status(HttpStatus.OK).json({
+        //             message: 'Post created',
+        //             post
+        //         });
+        //     })
+        //     .catch(err => {
+        //         res
+        //             .status(HttpStatus.INTERNAL_SERVER_ERROR)
+        //             .json({
+        //                 message: 'Error occured'
+        //             });
+        //     });
+
         Post.create(body)
             .then(async post => {
                 await User.update({
@@ -100,7 +115,7 @@ module.exports = {
     },
 
     async AddComment(req, res) {
-        // console.log(req.body.comment);
+        // console.log(req.body);
         const postId = req.body.postId;
         await Post.update({
                 _id: postId
