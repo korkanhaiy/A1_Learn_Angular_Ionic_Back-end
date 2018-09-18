@@ -38,10 +38,12 @@ module.exports = {
         } = Joi.validate(req.body, schema);
         console.log(value);
         if (error && error.details) {
-            return res.status(HttpStatus.BAD_REQUEST).json({
-                // what is msg ?
-                msg: error.details
-            });
+            return res
+                .status(HttpStatus.BAD_REQUEST)
+                .json({
+                    // what is msg ?
+                    msg: error.details
+                });
         }
 
         // กวดสอบว่ามีอีเมวนี้หลืยัง

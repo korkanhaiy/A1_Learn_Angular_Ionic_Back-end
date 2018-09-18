@@ -100,7 +100,7 @@ module.exports = {
     },
 
     async AddComment(req, res) {
-        console.log(req.body.comment);
+        // console.log(req.body.comment);
         const postId = req.body.postId;
         await Post.update({
                 _id: postId
@@ -109,7 +109,7 @@ module.exports = {
                     comments: {
                         userId: req.user._id,
                         username: req.user.username,
-                        comments: req.body.comment,
+                        comment: req.body.comment,
                         createdAt: new Date()
                     }
                 }
@@ -124,7 +124,21 @@ module.exports = {
                     message: 'Error occured'
                 });
             });
+    },
+
+    async GetPost(req, res) {
+        await Post.findOne({
+                _id: req.params.id
+            })
+            .populate('user')
+            .populate('comment.userId')
+            .then((post) => {
+                res.status(HttpStatus.OK).json({
+                    message: 'Post found',
+                    post
+                });
+            }).catch(err => res.status(HttpStatus.NOT_FOUND).json({
+                message: 'Post not found'
+            }));
     }
 };
-
-// hello world

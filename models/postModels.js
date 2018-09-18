@@ -22,7 +22,7 @@ const postSchema = mongoose.Schema({
             type: String,
             default: ''
         },
-        comments: {
+        comment: {
             type: String,
             default: ''
         },
