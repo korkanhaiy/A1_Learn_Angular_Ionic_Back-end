@@ -1,5 +1,5 @@
 const httpStatus = require('http-status-codes');
-const User = require('../models/postModels');
+const User = require('../models/userModels');
 
 
 module.exports = {
