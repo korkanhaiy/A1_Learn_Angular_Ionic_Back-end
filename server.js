@@ -48,11 +48,13 @@ require('./socket/streams')(io);
 const authRoutes = require("./routes/authRoutes");
 const postRoutes = require("./routes/postRoutes");
 const userRoutes = require("./routes/userRoutes");
+const friendsRoutes = require("./routes/friendsRoutes");
 
 
 app.use("/api/chatapp", authRoutes);
 app.use("/api/chatapp", postRoutes);
 app.use("/api/chatapp", userRoutes);
+app.use("/api/chatapp", friendsRoutes);
 
 
 server.listen(3000, () => {
