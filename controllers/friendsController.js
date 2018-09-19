@@ -13,6 +13,12 @@ module.exports = {
                 $push: {
                     following: {
                         userFollowed: req.body.userFollowed
+                    },
+                    notifications: {
+                        senderId: req.user._id,
+                        message: `${req.user.username} is now following you`,
+                        created: new Date(),
+                        viewProfile: false
                     }
                 }
             });
