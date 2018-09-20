@@ -6,6 +6,6 @@ const AuthHelper = require('../Helpers/AuthHelper');
 
 router.get('/users', AuthHelper.VerifyToken, UserController.GetAllUsers);
 router.get('/user/:id', AuthHelper.VerifyToken, UserController.GetUser);
-router.get('/user/:username', AuthHelper.VerifyToken, UserController.GetUserByName);
+router.get('/username/:username', AuthHelper.VerifyToken, UserController.GetUserByName);
 
 module.exports = router;

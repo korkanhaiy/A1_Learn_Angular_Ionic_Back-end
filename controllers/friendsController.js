@@ -13,12 +13,6 @@ module.exports = {
                 $push: {
                     following: {
                         userFollowed: req.body.userFollowed
-                    },
-                    notifications: {
-                        senderId: req.user._id,
-                        message: `${req.user.username} is now following you`,
-                        created: new Date(),
-                        viewProfile: false
                     }
                 }
             });
@@ -34,6 +28,12 @@ module.exports = {
                     followers: {
                         follower: req.user._id
                     }
+                },
+                notifications: {
+                    senderId: req.user._id,
+                    message: `${req.user.username} is now following you`,
+                    created: new Date(),
+                    viewProfile: false
                 }
             });
         };
@@ -84,5 +84,26 @@ module.exports = {
                     message: 'Error occured'
                 });
             });
+    },
+
+    async MarkNotification(req, res) {
+        if (!req.body.deleteVal) {
+            await User.updateOne({
+                _id: req.user._id,
+                'notifications._id': req.params.id
+            }, {
+                $set: {
+                    'notifications.$.read': true
+                }
+            }).then(() => {
+                res.status(HttpStatus.OK).json({
+                    message: 'Marked as read'
+                });
+            }).catch(err => {
+                res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+                    message: 'Error ocurred'
+                })
+            })
+        }
     }
 };

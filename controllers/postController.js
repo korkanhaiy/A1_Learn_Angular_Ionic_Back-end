@@ -26,28 +26,13 @@ module.exports = {
             created: new Date()
         };
 
-        // Post.create(body)
-        //     .then(post => {
-        //         res.status(HttpStatus.OK).json({
-        //             message: 'Post created',
-        //             post
-        //         });
-        //     })
-        //     .catch(err => {
-        //         res
-        //             .status(HttpStatus.INTERNAL_SERVER_ERROR)
-        //             .json({
-        //                 message: 'Error occured'
-        //             });
-        //     });
-
         Post.create(body)
             .then(async post => {
                 await User.update({
                     _id: req.user._id
                 }, {
                     $push: {
-                        post: {
+                        posts: {
                             postId: post._id,
                             post: req.body.post,
                             created: new Date()
