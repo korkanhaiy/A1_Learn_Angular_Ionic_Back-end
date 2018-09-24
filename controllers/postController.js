@@ -58,9 +58,19 @@ module.exports = {
                 .sort({
                     created: -1
                 }); // what is populate() ? method ?
+            const top = await Post.find({
+                    totalLikes: {
+                        $gte: 2
+                    }
+                })
+                .populate('user')
+                .sort({
+                    created: -1
+                });
             return res.status(HttpStatus.OK).json({
                 message: 'All posts',
-                posts
+                posts,
+                top
             });
         } catch (err) {
             return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
